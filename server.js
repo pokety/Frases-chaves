@@ -11,15 +11,15 @@ app.use(express.static('public'));
 app.get('/api', (req, res) => {
   res.send(api);
 });
-app.get('/', (req, res) => {
+app.get('/random', (req, res) => {
   res.send(api[Math.floor(Math.random() * 29)]);
 });
 
-app.get('/admin', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.post('/admin', urlencoder, (req, res) => {
+app.post('/', urlencoder, (req, res) => {
   const frase1 = req.body.frase;
   const autor1 = req.body.autor;
   api.push({ frase: frase1, autor: autor1 });
