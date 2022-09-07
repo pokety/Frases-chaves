@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/admin', (req, res) => {
-  res.sendFile(path.join(__dirname, 'admin.html'));
+  res.sendFile(path.join(__dirname, './public/admin.html'));
 });
 
 app.post('/admin', urlencoder, (req, res) => {
