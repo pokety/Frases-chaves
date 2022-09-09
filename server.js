@@ -4,9 +4,11 @@ const path = require('path');
 const bodyparse = require('body-parser');
 const api = require('./public/src/api.json');
 const fs = require('fs-extra');
+const cors=require('cors');
 
 const urlencoder = bodyparse.urlencoded({ extended: false });
 
+app.use(cors())
 app.use(express.static('public'));
 app.get('/api', (req, res) => {
   return res.json(api);
