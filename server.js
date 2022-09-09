@@ -9,7 +9,7 @@ const urlencoder = bodyparse.urlencoded({ extended: false });
 
 app.use(express.static('public'));
 app.get('/api', (req, res) => {
-  res.send(api);
+  return res.json(api);
 });
 app.get('/', (req, res) => {
   res.send(api[Math.floor(Math.random() * 29)]);
