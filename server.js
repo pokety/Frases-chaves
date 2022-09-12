@@ -10,11 +10,11 @@ const urlencoder = bodyparse.urlencoded({ extended: false });
 app.use(cors());
 app.use(express.static('public'));
 app.get('/api', (req, res) => {
-  res.json(api);
+  return res.json(api);
 });
 
 app.get('/', (req, res) => {
-  res.send(api[Math.floor(Math.random() * 29)]);
+  return res.json(api[Math.floor(Math.random() * 29)]);
 });
 
 app.get('/admin', (req, res) => {
