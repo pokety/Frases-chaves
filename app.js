@@ -17,8 +17,8 @@ app.get('/random', (req, res) => {
 app.get('/', urlencoder, (req, res) => {
   fs.readJson('./api.json', (err, obj) => {
     let stringado = JSON.stringify(obj[Math.floor(Math.random() * 29)].frase);
-    console.log(stringado);
-    res.send(`${stringado}`);
+    console.log(stringado.slice(1, stringado.length - 1));
+    res.send(`<h1>${stringado.slice(1, stringado.length - 1)}</h1>`);
   });
 });
 
