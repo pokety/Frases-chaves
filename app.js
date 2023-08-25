@@ -12,14 +12,14 @@ app.all('*',(req,res,next)=>{
   next()
 })
 
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
   return res.json(api);
 });
 app.get('/random', (req, res) => {
   return res.json(api[Math.floor(Math.random() * 29)]);
 });
 
-app.get('/', urlencoder, (req, res) => {
+app.get('/api', urlencoder, (req, res) => {
   fs.readJson('./api.json', (err, obj) => {
     let stringado = JSON.stringify(obj[Math.floor(Math.random() * 29)].frase);
     console.log(stringado.slice(1, stringado.length - 1));
