@@ -7,7 +7,7 @@ const fs = require('fs-extra');
 
 const urlencoder = bodyparse.urlencoded({ extended: false });
 
-app.all('*',function(req,res,next)=>{
+app.all('*',(req,res,next)=>{
   res.set('Acess-Control-Allow-Origin','*')
   next()
 })
