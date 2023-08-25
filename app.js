@@ -12,11 +12,11 @@ app.all('*',(req,res,next)=>{
   next()
 })
 
-app.get('/', (req, res) => {
+app.get('/all', (req, res) => {
   return res.json(api);
 });
-app.get('/random', (req, res) => {
-  return res.json(api[Math.floor(Math.random() * 29)]);
+app.get('/', (req, res) => {
+  return res.json(api[Math.floor(Math.random() * (api.length + 1))]);
 });
 
 app.get('/api', urlencoder, (req, res) => {
