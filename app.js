@@ -7,24 +7,25 @@ const fs = require('fs-extra');
 
 const urlencoder = bodyparse.urlencoded({ extended: false });
 
-app.all('*',function(req,res,next)=>{
+app.all('*',(req,res,next)=>{
   res.set('Acess-Control-Allow-Origin','*')
   next()
 })
 
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
   return res.json(api);
 });
+
 app.get('/random', (req, res) => {
-  return res.json(api[Math.floor(Math.random() * 29)]);
+  return res.json(api[Math.floor(Math.random() * (api.length))]);
 });
 
-app.get('/', urlencoder, (req, res) => {
-  fs.readJson('./api.json', (err, obj) => {
-    let stringado = JSON.stringify(obj[Math.floor(Math.random() * 29)].frase);
-    console.log(stringado.slice(1, stringado.length - 1));
-    res.send(`<h1>${stringado.slice(1, stringado.length - 1)}</h1>`);
-  });
+app.get('/help', urlencoder, (req, res) => {
+	
+  res.send(`
+    <h3>GET http://localhost:3000/random</h3>
+    `);
+
 });
 
 app.post('/', urlencoder, (req, res) => {
@@ -32,9 +33,11 @@ app.post('/', urlencoder, (req, res) => {
   const autor1 = req.body.autor;
   api.push({ frase: frase1, autor: autor1 });
   fs.writeJson('./api.json', api)
-    .then(() => console.log('sucesso'))
+    .then(() => {
+      console.log('sucesso')
+      res.json({msg:'sucesso'})
+    })
     .catch((err) => console.log(err));
-  console.log(api);
 });
 
 app.listen(3000, console.log('startd'));
