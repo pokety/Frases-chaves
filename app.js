@@ -25,8 +25,8 @@ app.get('/help', urlencoder, (req, res) => {
   res.send(`
     <h3>GET http://localhost:3000/random</h3>
     `);
-
 });
+
 
 app.post('/', urlencoder, (req, res) => {
   const frase1 = req.body.frase;
